@@ -1,31 +1,62 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+// import SimpleLightbox from 'simplelightbox';
+// import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+// const lightbox = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+// });
 
-export function createGallery(images) {
-  const markup = images.map(image => {
-    return `<li class="gallery-item">
-  <a href="${image.largeImageURL}">
-    <img src="${image.webformatURL}" alt="${image.tags}">
-  </a>
-  <div class="info">
-    <p>Likes: ${image.likes}</p>
-    <p>Views: ${image.views}</p>
-    <p>Comments: ${image.comments}</p>
-    <p>Downloads: ${image.downloads}</p>
-  </div>
+// export function createGallery(images) {
+//   const markup = images.map(image => {
+//     return `<li class="gallery-item">
+//   <a href="${image.largeImageURL}">
+//     <img src="${image.webformatURL}" alt="${image.tags}">
+//   </a>
+//   <div class="info">
+//     <p>Likes: ${image.likes}</p>
+//     <p>Views: ${image.views}</p>
+//     <p>Comments: ${image.comments}</p>
+//     <p>Downloads: ${image.downloads}</p>
+//   </div>
+// </li>`
+//   }).join(``)
+
+//   const gallery = document.querySelector('.gallery');
+
+//   gallery.insertAdjacentHTML('beforeend', markup);
+
+//   lightbox.refresh();
+// }
+
+
+// export function clearGallery() {
+//   const gallery = document.querySelector(".gallery")
+//   gallery.innerHTML = ""
+// }
+
+// export function showLoader() {
+//   const showloader = document.querySelector(".loader")
+//   showloader.classList.remove(".is-hidden")
+// }
+
+// export function hideLoader() {
+//   const loader = document.querySelector('.loader');
+//   loader.classList.add('is-hidden');
+// }
+
+
+const gallery = document.querySelector('.gallery');
+
+export function createGallery(books) {
+  const createBook = books.map(book => {
+    return `<li class="book-card">
+  <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.title}">
+  <h2>${book.volumeInfo.title}</h2>
+  <p>${book.volumeInfo.authors}</p>
 </li>`
-  }).join(``)
+  }).join("")
 
-  const gallery = document.querySelector('.gallery');
-
-  gallery.insertAdjacentHTML('beforeend', markup);
-
-  lightbox.refresh();
+  gallery.insertAdjacentHTML('beforeend', createBook)
 }
 
 
@@ -35,12 +66,12 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  const showloader = document.querySelector(".loader")
-  showloader.classList.remove(".is-hidden")
+  const loader = document.querySelector(".loader")
+  loader.classList.remove('is-hidden')
 }
 
 export function hideLoader() {
-  const loader = document.querySelector('.loader');
-  loader.classList.add('is-hidden');
-}
+  const loader = document.querySelector(".loader")
+  loader.classList.add('is-hidden')
 
+}
